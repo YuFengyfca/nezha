@@ -18,7 +18,7 @@ if ([System.Environment]::Is64BitOperatingSystem) {
 else {
     $file = "nezha-agent_windows_386.zip"
 }
-$agentreleases = "https://ghproxy.org/https://api.github.com/repos/$agentrepo/releases"
+$agentreleases = "https://ghproxy.org/api.github.com/repos/$agentrepo/releases"
 #重复运行自动更新
 if (Test-Path "C:\nezha\nezha-agent.exe") {
     Write-Host "Nezha monitoring already exists, delete and reinstall" -BackgroundColor DarkGreen -ForegroundColor White
@@ -53,10 +53,10 @@ $ipapi= Invoke-RestMethod  -Uri "https://api.myip.com/" -UserAgent "Mozilla/5.0 
 $region=$ipapi.cc
 echo $ipapi
 if($region -ne "CN"){
-$download = "https://ghproxy.org/https://github.com/$agentrepo/releases/download/$agenttag/$file"
+$download = "https://ghproxy.org/github.com/$agentrepo/releases/download/$agenttag/$file"
 Write-Host "Location:$region,connect directly!" -BackgroundColor DarkRed -ForegroundColor Green
 }else{
-$download = "https://ghproxy.org/https://github.com/$agentrepo/releases/download/$agenttag/$file"
+$download = "https://ghproxy.org/github.com/$agentrepo/releases/download/$agenttag/$file"
 Write-Host "Location:CN,use mirror address" -BackgroundColor DarkRed -ForegroundColor Green
 }
 echo $download
